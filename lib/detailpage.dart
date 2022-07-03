@@ -44,7 +44,7 @@ class _DetailPageState extends State<DetailPage> {
                 spacing: 30,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
-                  const Icon(Icons.comment_outlined, size: 40, color: Colors.white),
+                  const Icon(Icons.comment_outlined, size: 40, color: Colors.red),
                   const Icon(Icons.heart_broken_outlined, size: 40, color: Colors.white,),
                   const Icon(Icons.access_time_outlined, size: 40, color: Colors.white,)
                   ],
