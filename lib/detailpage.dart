@@ -1,9 +1,20 @@
 // ignore_for_file: must_be_immutable, prefer_const_constructors
 
+
+import 'state.dart';
+// ignore: avoid_web_libraries_in_flutter, unused_import
+
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
+
+  const DetailPage({
+    Key? key
+    
+    }) : super(key: key);
   
+  @override
   State<DetailPage> createState() => _DetailPageState();
 }
 
@@ -34,7 +45,7 @@ class _DetailPageState extends State<DetailPage> {
                 spacing: 30,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
-                  const Icon(Icons.comment_outlined, size: 40, color: Colors.red),
+                  const Icon(Icons.comment_outlined, size: 40, color: Colors.white),
                   const Icon(Icons.heart_broken_outlined, size: 40, color: Colors.white,),
                   const Icon(Icons.access_time_outlined, size: 40, color: Colors.white,)
                   ],
@@ -51,9 +62,9 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 child: Column(
                   children: [
-                    Text(widget.tit, style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white),),
+                    Consumer<DateTimes>(builder: (context, value, child) => Text(value.title!, style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white),),),
                     Spacer(),
-                    Text(widget.lead, style: TextStyle(color: Colors.white)),
+                    Consumer<DateTimes>(builder: (context, value, child) => Text(value.lead!, style: TextStyle(color: Colors.white))),
                     Container(
                       width: 150,
                       height: 50,
@@ -63,7 +74,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       margin: EdgeInsets.only(top: 20, left: 190),
                       alignment: Alignment.center,
-                      child: Text(widget.id.toString(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 20),),
+                      child: Consumer<DateTimes>(builder: (context, value, child) => Text(value.id.toString(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 20),))
                     )
                 ]
                 ),

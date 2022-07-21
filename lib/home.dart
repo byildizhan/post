@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:alidemircan/detailpage.dart';
-import 'package:dio/dio.dart';
+import 'package:alidemircan/state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'posts_model.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,18 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   
-  Future<List<PostsModel>> getUsers() async{
-    try{
-      List<PostsModel> user = [];
-      var response = await Dio().get('https://jsonplaceholder.typicode.com/posts');
-      if(response.statusCode == 200){
-        user = (response.data as List).map((e) => PostsModel.fromMap(e)).toList();
-      }
-      return user;
-    }on DioError catch(e){
-      return Future.error(e);
-    }
-  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           decoration: BoxDecoration(
             color: Colors.black,
           ),
-          child: FutureBuilder<List<PostsModel>>(future: getUsers(), builder: (context, snapshot){
+          child: FutureBuilder<List<PostsModel>>(future: Provider.of<DateTimes>(context).getUsers(), builder: (context, snapshot){
             if(snapshot.hasData){
               var postlist = snapshot.data!;
               return ListView.builder(
@@ -53,7 +44,8 @@ class _HomePageState extends State<HomePage> {
                     subtitle: Text(post.body, style: TextStyle(color: Colors.white)),
                     trailing: Text(post.userId.toString(), style: TextStyle(color: Colors.white)),
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(tit: post.title, lead: post.body, id: post.userId,)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage()));
+                      ChangeNotifierProvider<DateTimes>(create: ((context) => DateTimes(post.title, post.body, post.id)),);
                     },
                   ),
                 );

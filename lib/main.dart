@@ -1,9 +1,14 @@
+import 'package:alidemircan/state.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'home.dart';
 
+
 void main() {
-  runApp(const App());
+  runApp(ChangeNotifierProvider(create: (BuildContext context) { 
+    return DateTimes();
+   },
+  child: const App()));
 }
 
 class App extends StatelessWidget {
