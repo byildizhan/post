@@ -4,11 +4,13 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 PostsModel welcomeFromMap(String str) => PostsModel.fromMap(json.decode(str));
 
 String welcomeToMap(PostsModel data) => json.encode(data.toMap());
 
-class PostsModel {
+class PostsModel extends ChangeNotifier {
     PostsModel({
         required this.userId,
         required this.id,

@@ -62,9 +62,11 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 child: Column(
                   children: [
-                    Consumer<DateTimes>(builder: (context, value, child) => Text(value.title!, style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white),),),
+                    // Consumer<DateTimes>(builder: (context, value, child) => 
+                    Text('${Provider.of<DateTimes>(context).title}', style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white),),
                     Spacer(),
-                    Consumer<DateTimes>(builder: (context, value, child) => Text(value.lead!, style: TextStyle(color: Colors.white))),
+                    // Consumer<DateTimes>(builder: (context, value, child) => 
+                    Text('${Provider.of<DateTimes>(context).lead}', style: TextStyle(color: Colors.white)),
                     Container(
                       width: 150,
                       height: 50,
@@ -74,8 +76,8 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       margin: EdgeInsets.only(top: 20, left: 190),
                       alignment: Alignment.center,
-                      child: Consumer<DateTimes>(builder: (context, value, child) => Text(value.id.toString(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 20),))
-                    )
+                      child: Text('${Provider.of<DateTimes>(context).id}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 20),))
+                    
                 ]
                 ),
               )

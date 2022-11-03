@@ -5,10 +5,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:alidemircan/posts_model.dart';
 
 class DateTimes with ChangeNotifier {
-  DateTimes([this.title, this.lead, this.id]);
   String? title;
   String? lead;
   int? id;
+  void func (choosedTitle, choosedLead, choosedId){
+    title= choosedTitle;
+    lead = choosedLead;
+    id = choosedId;
+    notifyListeners();
+    }
+    
   
   Future<List<PostsModel>> getUsers() async{
     try{
@@ -22,5 +28,5 @@ class DateTimes with ChangeNotifier {
       return Future.error(e);
     }
   }
-
 }
+

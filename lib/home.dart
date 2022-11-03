@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   
   @override
   Widget build(BuildContext context) {
+    Function func = Provider.of<DateTimes>(context).func;
     return Scaffold(
       appBar: AppBar(
         title: const Text('data'),
@@ -45,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                     trailing: Text(post.userId.toString(), style: TextStyle(color: Colors.white)),
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage()));
-                      ChangeNotifierProvider<DateTimes>(create: ((context) => DateTimes(post.title, post.body, post.id)),);
+                      func(post.title, post.body, post.id);
                     },
                   ),
                 );

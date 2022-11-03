@@ -1,3 +1,4 @@
+import 'package:alidemircan/posts_model.dart';
 import 'package:alidemircan/state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
